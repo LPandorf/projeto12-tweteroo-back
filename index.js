@@ -16,4 +16,11 @@ app.post("/sign-up", (req, res) =>{
     res.send("OK");
 })
 
+app.post("/tweets", (req, res) =>{
+    const {username, tweet}=req.body;
+    tweets.push({username, tweet});
+    console.log(tweets);
+    res.send("OK");
+});
+
 app.listen(5000, ()=>{console.log("listening on port 5000")});
