@@ -18,12 +18,18 @@ app.post("/sign-up", (req, res) =>{
 
 app.post("/tweets", (req, res) =>{
     const {username, tweet}=req.body;
+    let exist=false;
+    for(let i=0; i<users.length; i++){
+        if(username===users[i].username){
+            let exist=true;
+        }
+    }
+    if(exist===false){
+        res.status(401).send({message: "UNAUTHORIZED"});
+    }
     const {avatar}=users.find((user)=>user.username===username);
     tweets.push({username, tweet, avatar});
     //console.log(tweets);
-    if(!username){
-        res.status(401).send({ message:"UNAUTHORIZED"});
-    }
     res.status(200).send("OK");
 });
 
