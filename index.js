@@ -22,7 +22,7 @@ app.post("/tweets", (req, res) =>{
     tweets.push({username, tweet, avatar});
     //console.log(tweets);
     if(!username){
-        res.status(401).send("UNAUTHORIZED");
+        res.status(401).send({ message:"UNAUTHORIZED"});
     }
     res.status(200).send("OK");
 });
