@@ -12,15 +12,20 @@ const tweets=[];
 app.post("/sign-up", (req, res) =>{
     const {username, avatar}=req.body;
     users.push({username, avatar});
-    console.log(users);   
+    //console.log(users);   
     res.send("OK");
 })
 
 app.post("/tweets", (req, res) =>{
     const {username, tweet}=req.body;
-    tweets.push({username, tweet});
-    console.log(tweets);
+    const {avatar}=users.find((user)=>user.username===username);
+    tweets.push({username, tweet, avatar});
+    //console.log(tweets);
     res.send("OK");
+});
+
+app.get("/tweets", (req, res) =>{
+    res.send(tweets.slice(-10));
 });
 
 app.listen(5000, ()=>{console.log("listening on port 5000")});
