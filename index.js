@@ -13,7 +13,7 @@ app.post("/sign-up", (req, res) =>{
     const {username, avatar}=req.body;
     users.push({username, avatar});
     //console.log(users);   
-    res.send("OK");
+    res.status(200).send("OK");
 })
 
 app.post("/tweets", (req, res) =>{
@@ -21,7 +21,10 @@ app.post("/tweets", (req, res) =>{
     const {avatar}=users.find((user)=>user.username===username);
     tweets.push({username, tweet, avatar});
     //console.log(tweets);
-    res.send("OK");
+    if(!username){
+        res.status(401).send("UNAUTHORIZED");
+    }
+    res.status(200).send("OK");
 });
 
 app.get("/tweets", (req, res) =>{
