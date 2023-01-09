@@ -12,7 +12,7 @@ const tweets=[];
 app.post("/sign-up", (req, res) =>{
     const {username, avatar}=req.body;
     users.push({username, avatar});
-    console.log(users);   
+    //console.log(users);   
     res.status(200).send("OK");
 })
 
@@ -29,7 +29,7 @@ app.post("/tweets", (req, res) =>{
     }
     const {avatar}=users.find((user)=>user.username===username);
     tweets.push({username, tweet, avatar});
-    console.log(tweets);
+    //console.log(tweets);
     res.status(200).send("OK");
 });
 
